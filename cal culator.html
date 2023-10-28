@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        #calculator {
+            width: 300px;
+            height: 400px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 5px;
+            padding: 10px;
+            border: 1px solid rgb(169, 168, 168);
+            background-color: rgb(236, 244, 252);
+            border-radius: 5px;
+        }
+
+        #display {
+            grid-column: span 4;
+            margin-bottom: 20px;
+            padding: 10px;
+            font-size: 18px;
+            text-align: right;
+            border-radius: 3px;
+        }
+
+        button {
+            padding: 10px;
+            font-size: 16px;
+            text-align: center;
+            cursor: pointer;
+            background-color: white;
+            border: 1px solid rgb(221, 217, 217);
+            border-radius: 5px;
+        }
+    </style>
+    <title>Simple Calculator</title>
+</head>
+<body>
+
+<div id="calculator">
+    <div id="display"></div>
+    <button onclick="clearDisplay()">Clear</button>
+    <button onclick="backspace()">⌫</button>
+    <button onclick="calculatePercentage()">%</button>
+    <button onclick="appendToDisplay('/')">&divide;</button>
+    <button onclick="appendToDisplay('7')">7</button>
+    <button onclick="appendToDisplay('8')">8</button>
+    <button onclick="appendToDisplay('9')">9</button>
+    <button onclick="appendToDisplay('*')">*</button>
+    <button onclick="appendToDisplay('4')">4</button>
+    <button onclick="appendToDisplay('5')">5</button>
+    <button onclick="appendToDisplay('6')">6</button>
+    <button onclick="appendToDisplay('-')">-</button>
+    <button onclick="appendToDisplay('1')">1</button>
+    <button onclick="appendToDisplay('2')">2</button>
+    <button onclick="appendToDisplay('3')">3</button>
+    <button onclick="appendToDisplay('+')">+</button>
+    <button onclick="appendToDisplay('.')">.</button>
+     <button onclick="appendToDisplay('0')">0</button>
+    <button onclick="toggleSign()">+/-</button>
+    <button onclick="calculateResult()" style=" background-color:#6495ed;">=</button>
+</div>
+
+<script>
+    let display = document.getElementById('display');
+    function appendToDisplay(value) {
+        display.textContent += value;
+    }
+
+    function clearDisplay() {
+        display.textContent = '';
+    }
+function backspace() {
+        display.textContent = display.textContent.slice(0, -1);
+    }
+function calculatePercentage() {
+        display.textContent = parseFloat(display.textContent) / 100;
+    }
+    function calculateResult() {
+        try {
+            display.textContent = eval(display.textContent);
+        } catch (error) {
+            display.textContent = 'Error';
+        }
+    }
+function toggleSign() {
+        display.textContent = -1 * parseFloat(display.textContent);
+    }
+    
+</script>
+
+</body>
+</html>
